@@ -21,7 +21,7 @@ Then generate the gridpacks. And then produce the LHE file.
 Run the following:
   
 1. cd genproductions/bin/MadGraph5_aMCatNLO/
-2. ./submit_condor_gridpack_generation.sh DYJets_m200 DYJets_m200_InputCards/
+2. ./submit_condor_gridpack_generation.sh DYJets_m200 DYJets_m200_InputCards/   #make modifications to the files within DYJets_m200_InputCards before running if you do not want to produce sample with nominal settings
   
 ### LHE creation
 
