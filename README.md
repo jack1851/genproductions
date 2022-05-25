@@ -13,10 +13,19 @@ Run the following commands from within /data/cmszfs1/user/<username>/ directory 
 
 1. python -m pip install htcondor --user
 2. git clone https://github.com/Michael-Krohn/genproductions.git
+  
+Then generate the gridpacks. And then produce the LHE file.
 
 ### Generating gridpacks
   
 Run the following:
   
 1. cd genproductions/bin/MadGraph5_aMCatNLO/
-2. ./submit_condor_gridpack_generation.sh DYJets_m50to150 DYJets_m50to150_InputCards/
+2. ./submit_condor_gridpack_generation.sh DYJets_m200 DYJets_m200_InputCards/
+  
+### LHE creation
+
+Run the following:
+  
+1. cd DYJets_m200/DYJets_m200_gridpack/work/gridpack/
+2. ./runcmsgrid.sh <nEvents> <randomSeed> <nCPUs>   #100k events takes about 24hrs to be produced.
