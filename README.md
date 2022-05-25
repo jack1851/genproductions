@@ -29,3 +29,5 @@ Run the following:
   
 1. cd DYJets_m200/DYJets_m200_gridpack/work/gridpack/
 2. ./runcmsgrid.sh <nEvents> <randomSeed> <nCPUs>   #100k events takes about 24hrs to be produced.
+  
+This will produce the file cmsgrid_final.lhe. Move this to your directory within /hdfs/cms/user/
