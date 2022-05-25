@@ -9,25 +9,33 @@ Instructions on how to use the fragments are here https://twiki.cern.ch/twiki/bi
 
 ## Setup on UMN cluster
 
-Run the following commands from within /data/cmszfs1/user/<username>/ directory to setup scripts
+Run the following commands from within your /data/cmszfs1/user/username/ directory to setup the scripts
 
+```
 1. python -m pip install htcondor --user
 2. git clone https://github.com/Michael-Krohn/genproductions.git
-  
+```
+
 Then generate the gridpacks. And then produce the LHE file.
 
 ### Generating gridpacks
   
 Run the following:
-  
+
+```
 1. cd genproductions/bin/MadGraph5_aMCatNLO/
 2. ./submit_condor_gridpack_generation.sh DYJets_m200 DYJets_m200_InputCards/   #make modifications to the files within DYJets_m200_InputCards before running if you do not want to produce sample with nominal settings
+```
   
 ### LHE creation
 
 Run the following:
-  
+
+```
 1. cd DYJets_m200/DYJets_m200_gridpack/work/gridpack/
-2. ./runcmsgrid.sh nEvents randomSeed nCPUs   #100k events takes about 24hrs to be produced.
-  
+2. ./runcmsgrid.sh <nEvents> <randomSeed> <nCPUs>   #100k events takes about 24hrs to be produced.
+```
+
 This will produce the file cmsgrid_final.lhe. Move this to your directory within /hdfs/cms/user/
+
+Then follow the instructions here to create the GEN files: https://github.com/Michael-Krohn/MCsampleProduction
