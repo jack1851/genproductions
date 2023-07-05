@@ -228,7 +228,7 @@ class CMSCondorCluster(CondorCluster):
                   +JobFlavour = "%(job_flavour)s"
                   +CondorGroup = "cmsfarm"
 
-		  request_memory = 2048
+		  request_memory = 1024
 
                   queue 1
                """
