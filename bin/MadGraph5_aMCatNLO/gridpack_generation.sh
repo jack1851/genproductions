@@ -30,6 +30,10 @@ make_tarball () {
     else
         XZ_OPT="--lzma2=preset=9,dict=512MiB"
     fi
+    
+    mkdir error
+    mkdir log
+    mkdir output
 
     mkdir InputCards
     cp $CARDSDIR/${name}*.* InputCards
@@ -42,7 +46,7 @@ make_tarball () {
     if [ -e merge.pl ]; then
         EXTRA_TAR_ARGS+="merge.pl "
     fi
-    XZ_OPT="$XZ_OPT" tar -cJpsf ${PRODHOME}/${name}_${scram_arch}_${cmssw_version}_tarball.tar.xz mgbasedir process runcmsgrid.sh gridpack_generation*.log InputCards $EXTRA_TAR_ARGS
+    XZ_OPT="$XZ_OPT" tar -cJpf ${PRODHOME}/${name}_${scram_arch}_${cmssw_version}_tarball.tar.xz mgbasedir process runcmsgrid.sh gridpack_generation*.log InputCards $EXTRA_TAR_ARGS
 
     echo "Gridpack created successfully at ${PRODHOME}/${name}_${scram_arch}_${cmssw_version}_tarball.tar.xz"
     echo "End of job"
@@ -616,7 +620,7 @@ make_gridpack () {
       pdfExtraArgs+="--is5FlavorScheme "
     fi 
     
-    pdfSysArgs=$(python ${script_dir}/getMG5_aMC_PDFInputs.py -f systematics -c 2017 $pdfExtraArgs)
+    pdfSysArgs=$(python2.7 ${script_dir}/getMG5_aMC_PDFInputs.py -f systematics -c 2017 $pdfExtraArgs)
     sed -i s/PDF_SETS_REPLACE/${pdfSysArgs}/g runcmsgrid.sh
     
     
@@ -673,6 +677,8 @@ else
         scram_arch=slc6_amd64_gcc700 
     elif [[ $SYSTEM_RELEASE == *"release 7"* ]]; then 
         scram_arch=slc7_amd64_gcc700 
+    elif [[ $SYSTEM_RELEASE == *"release 8"* ]]; then
+        scram_arch=slc7_amd64_gcc700
     else 
         echo "No default scram_arch for current OS!"
         if [ "${BASH_SOURCE[0]}" != "${0}" ]; then return 1; else exit 1; fi        
@@ -687,6 +693,8 @@ else
         cmssw_version=CMSSW_10_2_24_patch1 
     elif [[ $SYSTEM_RELEASE == *"release 7"* ]]; then 
         cmssw_version=CMSSW_10_6_19 
+    elif [[ $SYSTEM_RELEASE == *"release 8"* ]]; then
+        cmssw_version=CMSSW_10_6_19    
     else 
         echo "No default CMSSW for current OS!"
         if [ "${BASH_SOURCE[0]}" != "${0}" ]; then return 1; else exit 1; fi        

@@ -34,4 +34,4 @@ add process p p > l+ l- j j / h @2
 add process p p > l+ l- j j j / h @3
 add process p p > l+ l- j j j j / h @4
 # Output processes to MadEvent directory
-output DYJets_m200 -nojpeg
+output DYJets_m200_0to4j -nojpeg
